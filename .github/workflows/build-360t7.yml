@@ -167,7 +167,7 @@ jobs:
       uses: actions/upload-artifact@main
       if: env.ORGANIZE_STATUS == 'success' && env.UPLOAD_FIRMWARE == 'true' && !cancelled()
       with:
-        name: OpenWrt_firmware_${{ env.DEVICE_NAME }_${{ env.FILE_DATE }}}
+        name: OpenWrt_firmware_${{ env.DEVICE_NAME }}_${{ env.FILE_DATE }}
         path: ${{ env.FIRMWARE }}
 
     - name: Upload OpenWrt Firmware to Release
