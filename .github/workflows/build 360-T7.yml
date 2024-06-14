@@ -4,7 +4,7 @@
 #    padavanonly /immortalwrt-mt798x from padavanonly
 ################################################
 
-name: Build 360-T7
+name: build 360-T7
 
 on:
   repository_dispatch:
