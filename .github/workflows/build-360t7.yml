@@ -11,8 +11,8 @@ on:
     types: [Source_Code_Update_hanwckf, Package_Luci_Update]
   workflow_dispatch:
     inputs:
-      SSH_ACTION:
-        description: 'SSH远程配置固件'
+      SSH:
+        description: 'SSH 远程配置固件'
         required: false
         default: 'false'
         type: boolean
