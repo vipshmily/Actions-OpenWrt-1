@@ -1,14 +1,14 @@
 ################################################
-# Description: Build OpenWrt for 360T7 using GitHub Actions
+# Description: Build OpenWrt for NOKIA-EA0326GMP using GitHub Actions
 # Uses:
-#    hanwckf /immortalwrt-mt798x from hanwckf
+#    padavanonly /immortalwrt-mt798x from padavanonly
 ################################################
 
-name: Build 360-T7
+name: build NOKIA-EA0326GMP
 
 on:
   repository_dispatch:
-    types: [Source_Code_Update_hanwckf, Package_Luci_Update]
+    types: [Source_Code_Update_padavanonly, Package_Luci_Update]
   workflow_dispatch:
     inputs:
       SSH:
@@ -23,7 +23,7 @@ env:
   REPO_URL: https://github.com/padavanonly/immortalwrt-mt798x
   REPO_BRANCH: openwrt-21.02
   FEEDS_CONF: mt798x/feeds.conf.default
-  CONFIG_FILE: mt798x/360-T7.config
+  CONFIG_FILE: mt798x/NOKIA-EA0326GMP.config
   DIY_P1_SH: mt798x/diy-part1.sh
   DIY_P2_SH: mt798x/diy-part2.sh
   UPLOAD_BIN_DIR: false
@@ -91,7 +91,7 @@ jobs:
       uses: klever1988/cachewrtbuild@main
       with:
         ccache: 'true'
-        mixkey: '360-T7'
+        mixkey: 'NOKIA-EA0326GMP'
         prefix: openwrt
 
     - name: Load custom feeds
@@ -138,7 +138,7 @@ jobs:
         make -j$(nproc) || make -j1 V=s
         echo "COMPILE_STATUS=success" >> $GITHUB_ENV 
         # grep '^CONFIG_TARGET.*DEVICE.*=y' .config | sed -r 's/.*DEVICE_(.*)_DEVICE.*=y/\1/' > DEVICE_NAME
-        echo "mediatek_mt7981_360-T7" > DEVICE_NAME
+        echo "mediatek_mt7981_NOKIA-EA0326GMP" > DEVICE_NAME
         [ -s DEVICE_NAME ] && echo "DEVICE_NAME=$(cat DEVICE_NAME)" >> $GITHUB_ENV
         echo "FILE_DATE=$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_ENV
 
@@ -181,13 +181,10 @@ jobs:
         allowUpdates: true
         token: ${{ secrets.GITHUB_TOKEN }}
         body: |
-            360T7 固件精简版, 闭源驱动(非DSA)
-            基于openwrt-21.02, kernel 5.4, 编译时间: ${{ env.FILE_DATE }}
-            
-            Default IP: 192.168.199.1
+            NOKIA-EA0326GMP 固件， 基于openwrt-21.02, kernel 5.4, 编译时间: ${{ env.FILE_DATE }}
+            Default IP: 192.168.2.1
             Default username: root
-            Default password: password
-            
+            Default password: none
             插件列表： 
               ├ ddns
               ├ filetransfer
