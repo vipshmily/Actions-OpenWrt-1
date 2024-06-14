@@ -23,7 +23,7 @@ env:
   REPO_URL: https://github.com/padavanonly/immortalwrt-mt798x
   REPO_BRANCH: openwrt-21.02
   FEEDS_CONF: mt798x/feeds.conf.default
-  CONFIG_FILE: mt798x/360t7.config
+  CONFIG_FILE: mt798x/360-T7.config
   DIY_P1_SH: mt798x/diy-part1.sh
   DIY_P2_SH: mt798x/diy-part2.sh
   UPLOAD_BIN_DIR: false
@@ -181,7 +181,7 @@ jobs:
         removeArtifacts: false
         artifacts: ${{ env.FIRMWARE }}/*
         allowUpdates: true
-        token: ${{ secrets.GH_TOKEN }}
+        token: ${{ secrets.GITHUB_TOKEN }}
         body: |
             360T7 固件精简版, 闭源驱动(非DSA)
             基于openwrt-21.02, kernel 5.4, 编译时间: ${{ env.FILE_DATE }}
@@ -204,11 +204,11 @@ jobs:
       uses: Mattraks/delete-workflow-runs@main
       if: env.ORGANIZE_STATUS == 'success' && (!cancelled())
       with:
-        token: ${{ secrets.GH_TOKEN }}
+        token: ${{ secrets.GITHUB_TOKEN }}
         repository: ${{ github.repository }}
         retain_days: 3
         keep_minimum_runs: 2
-        delete_workflow_pattern: "360T7"
+        delete_workflow_pattern: "${{ env.DEVICE_NAME }}"
 
     - name: Remove old Releases
       uses: dev-drprasad/delete-older-releases@master
@@ -216,7 +216,7 @@ jobs:
       with:
         repo: ${{ github.repository }}
         keep_latest: 2
-        delete_tag_pattern: '360T7'
+        delete_tag_pattern: '${{ env.DEVICE_NAME }}'
         delete_tags: true
       env:
-        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
