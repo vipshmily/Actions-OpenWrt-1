@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2019-2021 P3TERX <https://p3terx.com>
+# Copyright (c) 2019-2024 P3TERX <https://p3terx.com>
 #
 # This is free software, licensed under the MIT License.
 # See /LICENSE for more information.
@@ -15,8 +15,8 @@ name: Update Checker
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: 23 22 * * *
+#  schedule:
+#    - cron: 23 22 * * *
 
 jobs:
   Check:
@@ -25,8 +25,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # REPO: [sdf8057/ipq6000, hanwckf/immortalwrt-mt798x, immortalwrt/immortalwrt, ophub/kernel, dimfishr/openwrt, AgustinLorenzo/openwrt, qosmio/openwrt-ipq]
-        REPO: [sdf8057/ipq6000, hanwckf/immortalwrt-mt798x, immortalwrt/immortalwrt, ophub/kernel, qosmio/openwrt-ipq, openwrt-ipq60xx/openwrt]
+        # REPO: [sdf8057/ipq6000, padavanonly/immortalwrt-mt798x, immortalwrt/immortalwrt, ophub/kernel, dimfishr/openwrt, AgustinLorenzo/openwrt, qosmio/openwrt-ipq]
+        REPO: [sdf8057/ipq6000, padavanonly/immortalwrt-mt798x, immortalwrt/immortalwrt, ophub/kernel, qosmio/openwrt-ipq, openwrt-ipq60xx/openwrt]
         
     steps:
       - name: Check All Code Bases
@@ -41,7 +41,7 @@ jobs:
           echo "REPO_NAME=$REPO_NAME" >> $GITHUB_ENV
           
           export SDF8057_BRANCH="master"
-          export HANWCKF_BRANCH="openwrt-21.02"
+          export padavanonly_BRANCH="openwrt-21.02"
           export IMMORTALWRT_BRANCH="master"
           export OPHUB_BRANCH="main"
           export BITTHIEF_BRANCH="master"
@@ -53,9 +53,9 @@ jobs:
           if [ $REPO_USER == sdf8057 ]
           then
             export BRANCH=$SDF8057_BRANCH
-          elif [ $REPO_USER == hanwckf ]
+          elif [ $REPO_USER == padavanonly ]
           then
-            export BRANCH=$HANWCKF_BRANCH
+            export BRANCH=$padavanonly_BRANCH
           elif [ $REPO_USER == ophub ]
           then
             export BRANCH=$OPHUB_BRANCH
