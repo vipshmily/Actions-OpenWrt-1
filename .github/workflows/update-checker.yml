@@ -41,7 +41,7 @@ jobs:
           echo "REPO_NAME=$REPO_NAME" >> $GITHUB_ENV
           
           export SDF8057_BRANCH="master"
-          export padavanonly_BRANCH="openwrt-21.02"
+          export PADANVANONLY_BRANCH="openwrt-21.02"
           export IMMORTALWRT_BRANCH="master"
           export OPHUB_BRANCH="main"
           export BITTHIEF_BRANCH="master"
@@ -55,7 +55,7 @@ jobs:
             export BRANCH=$SDF8057_BRANCH
           elif [ $REPO_USER == padavanonly ]
           then
-            export BRANCH=$padavanonly_BRANCH
+            export BRANCH=$PADANVANONLY_BRANCH
           elif [ $REPO_USER == ophub ]
           then
             export BRANCH=$OPHUB_BRANCH
