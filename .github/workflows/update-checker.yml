@@ -15,8 +15,8 @@ name: Update Checker
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: 23 22 * * *
+#  schedule:
+#    - cron: 23 22 * * *
 
 jobs:
   Check:
